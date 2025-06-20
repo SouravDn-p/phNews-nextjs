@@ -39,7 +39,7 @@ const NewsDetailsPage = ({ news }) => {
               borderBottom: "6px solid black",
               borderRadius: "5px",
               paddingBottom: "5px",
-              fontWeight:'bold'
+              fontWeight: "bold",
             }}
             level={2}
           >
@@ -49,7 +49,14 @@ const NewsDetailsPage = ({ news }) => {
 
           <Divider />
 
-          <div style={{ fontSize: "14px", color: "#666", lineHeight: "1.8" , fontWeight:"bold" }}>
+          <div
+            style={{
+              fontSize: "14px",
+              color: "#666",
+              lineHeight: "1.8",
+              fontWeight: "bold",
+            }}
+          >
             <Text strong>Author:</Text> {news.author} <br />
             <Text strong>Published:</Text> {news.release_date} <br />
             <Text strong>Category:</Text> {news.category} <br />
@@ -67,18 +74,18 @@ NewsDetailsPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:5000/news");
-  const newses = await res.json();
+// export const getStaticPaths = async () => {
+//   const res = await fetch("http://localhost:5000/news");
+//   const newses = await res.json();
 
-  const paths = newses.map((news) => ({
-    params: { newsId: news.id },
-  }));
+//   const paths = newses.map((news) => ({
+//     params: { newsId: news.id },
+//   }));
 
-  return { paths, fallback: false };
-};
+//   return { paths, fallback: false };
+// };
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const { params } = context;
   const res = await fetch(`http://localhost:5000/news/${params.newsId}`);
   const data = await res.json();
