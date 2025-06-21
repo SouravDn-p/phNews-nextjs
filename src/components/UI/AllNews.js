@@ -21,7 +21,7 @@ const AllNews = ({ allNews }) => {
 
       <div style={{ padding: "40px", background: "#f0f2f5" }}>
         <Row gutter={[24, 24]}>
-          {allNews.map((news, index) => (
+          {allNews?.map((news, index) => (
             <Col key={index} xs={24} sm={12} md={8} lg={6}>
               <Card
                 hoverable
